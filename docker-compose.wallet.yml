@@ -1,12 +1,12 @@
 # EXAMPLE ONLY
 # Simple nginx router to show how you can access wallet endpoints from a specific
 # API domain (instead of specifying the port #)
-# Alertnatively you can access wallet with bcoin.yourdomain.org:8334 (mainnet)
+# Alertnatively you can access wallet with lcoin.yourdomain.org:8334 (mainnet)
 # Without using this configuration
 
 version: '2'
 services:
-  bcoin-wallet:
+  lcoin-wallet:
     image: nginx:stable-alpine
     restart: unless-stopped
     environment:
@@ -16,13 +16,13 @@ services:
     expose:
       - 80
     networks:
-      - "bcoin"
+      - "lcoin"
       - "nginx-proxy"
 
 networks:
-  bcoin:
+  lcoin:
     external:
-      name: "bcoin"
+      name: "lcoin"
   nginx-proxy:
     external:
       name: "nginx-proxy"

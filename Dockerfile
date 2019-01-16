@@ -1,17 +1,17 @@
-FROM node:alpine AS base
+FROM node:8-alpine AS base
 
 RUN mkdir /code
 WORKDIR /code
-CMD "bcoin"
+CMD "lcoin"
 
-ENV BCOIN_VERSION=${BCOIN_VERSION} \
-    BCOIN_REPO=https://github.com/bcoin-org/bcoin.git
+ENV LCOIN_VERSION=${LCOIN_VERSION} \
+    LCOIN_REPO=https://github.com/bcoin-org/lcoin.git
 
 RUN apk upgrade --no-cache && \
     apk add --no-cache bash git
 
-RUN git clone $BCOIN_REPO /code && \
-    git checkout $BCOIN_VERSION
+RUN git clone $LCOIN_REPO /code && \
+    git checkout $LCOIN_VERSION
 
 FROM base AS build
 
@@ -26,4 +26,4 @@ COPY --from=build /code /code/
 
 # Main-net and Test-net
 EXPOSE 8334 8333 8332 18334 18333 18332
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "bcoin-cli info >/dev/null" ]
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD [ "lcoin-cli info >/dev/null" ]
