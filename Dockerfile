@@ -5,7 +5,7 @@ WORKDIR /code
 CMD "lcoin"
 
 ENV LCOIN_VERSION=${LCOIN_VERSION} \
-    LCOIN_REPO=https://github.com/bcoin-org/lcoin.git
+    LCOIN_REPO=https://github.com/petejkim/lcoin.git
 
 RUN apk upgrade --no-cache && \
     apk add --no-cache bash git
